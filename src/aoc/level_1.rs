@@ -5,9 +5,7 @@ pub fn solve() -> (i32, i32) {
     let mut elfs_kcal = elfs_input.split("\n\n")
         .map(|every_kcal| {
             every_kcal
-                .split('\n') // found out that this split can be replaced by split_whitespace()
-                             // not going to use it as it was not part of the original solution.
-                             // still learned something new :D
+                .split_whitespace()
                 .fold(0, |acc, kcal| {
                     kcal.parse::<i32>().unwrap_or(0) + acc
                 }) 
@@ -19,8 +17,8 @@ pub fn solve() -> (i32, i32) {
     elfs_kcal.reverse();
 
     (
-        elfs_kcal.get(0).unwrap().to_owned(),
-        elfs_kcal.get(0..3).unwrap().iter().sum()
+        *elfs_kcal.first().unwrap(),
+        elfs_kcal.get(..3).unwrap().iter().sum()
     )
 }
 

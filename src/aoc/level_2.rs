@@ -95,6 +95,6 @@ pub fn solve() -> (i32, i32) {
         })
         .sum();
 
-    (l1.to_owned(), l2.to_owned())
+    (l1, l2)
 }
 
