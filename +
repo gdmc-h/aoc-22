@@ -3,8 +3,8 @@ use crate::helpers::load_input;
 pub fn solve() -> (i32, i32) {
     let priorities = ('a'..='z').chain('A'..='Z').into_iter().collect::<Vec<char>>();
     let level = load_input::select(3).unwrap();
-    let lines_part_1 = level.lines();
-    let lines_vec = lines_part_1.clone().map(|l| l.to_string()).collect::<Vec<String>>();
+    let lines_part_1 = Rc::new(level.lines());
+    let lines_vec = lines_part_1.map(|l| l.to_string()).collect::<Vec<String>>();
     let lines_part_2 = lines_vec.array_chunks::<3>();
 
     fn get_index(i: &[char], search: &char) -> i32 {

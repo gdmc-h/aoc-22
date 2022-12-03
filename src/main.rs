@@ -1,3 +1,4 @@
+#![feature(array_chunks, iter_array_chunks)]
 extern crate reqwest;
 mod helpers;
 mod aoc;
