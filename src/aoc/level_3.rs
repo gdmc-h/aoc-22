@@ -9,7 +9,7 @@ pub fn solve() -> (i32, i32) {
         i.iter().position(|&r| r == *search).unwrap() as i32
     };
 
-    let get_single_sum = |head: String, tail: &[String]| {
+    let get_result = |head: String, tail: &[String]| {
         head.chars()
             .collect::<Vec<char>>()
             .iter()
@@ -33,7 +33,7 @@ pub fn solve() -> (i32, i32) {
                 let half_len = sack.len() / 2;
                 let (comp1, comp2) = sack.split_at(half_len);
 
-                get_single_sum(comp1.to_string(), &[comp2.to_string()])
+                get_result(comp1.to_string(), &[comp2.to_string()])
             }).sum();
 
     let part_2: i32 = 
@@ -42,7 +42,7 @@ pub fn solve() -> (i32, i32) {
                 let head = group.first().unwrap().to_owned();
                 let tail = &group[1..];
         
-                get_single_sum(head, tail)
+                get_result(head, tail)
             }).sum();
 
 
