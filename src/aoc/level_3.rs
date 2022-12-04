@@ -5,25 +5,19 @@ pub fn solve() -> (i32, i32) {
     let level = load_input::select(3).unwrap();
     let lines = Box::new(level.lines().map(|l| l.to_string()));
 
-    let get_index = |i: &[char], search: &char| -> i32 {
-        i.iter().position(|&r| r == *search).unwrap() as i32
-    };
-
     let get_result = |head: String, tail: &[String]| {
         head.chars()
-            .collect::<Vec<char>>()
-            .iter()
             .fold(vec![], |mut acc, item| {
-                let filter_me_daddy = tail.iter().filter(|s| s.contains(*item));
+                let filter_me_daddy = tail.iter().filter(|s| s.contains(item));
 
-                if filter_me_daddy.count() == tail.len() && !acc.contains(item) {
-                    acc.push(*item);
+                if filter_me_daddy.count() == tail.len() && !acc.contains(&item) {
+                    acc.push(item);
                 }
 
                 acc
             })
             .iter()
-            .map(|item| get_index(&priorities, item) + 1)
+            .map(|item| priorities.iter().position(|&r| r == *item).unwrap() as i32 + 1)
             .sum::<i32>()
     };
 
